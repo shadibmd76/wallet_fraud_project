@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="grid" style="margin-bottom:20px">
+  <div class="stat"><div class="muted">Total Customers</div><div class="num">{{ stats.users }}</div></div>
+  <div class="stat"><div class="muted">Total Transactions</div><div class="num">{{ stats.txs }}</div></div>
+  <div class="stat"><div class="muted">Completed Volume</div><div class="num">Tk {{ "{:,.0f}".format(stats.volume) }}</div></div>
+  <div class="stat"><div class="muted">Pending Review</div><div class="num" style="color:#d64545">{{ stats.pending }}</div></div>
+  <div class="stat"><div class="muted">High Risk Alert</div><div class="num">{{ stats.high }}</div></div>
+</div>
+
+<div class="card">
+  <h2>🚨 Fraud Alerts &amp; Review</h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>#</th><th>Time</th><th>Customer</th><th>Amount</th><th>Risk</th><th>Reasons</th><th>Status</th><th>Action</th></tr>
+    {% for a in alerts %}
+    <tr>
+      <td>{{ a.id }}</td><td>{{ a.created_at.replace('T',' ') }}</td><td>{{ a.username }}</td>
+      <td>{{ "{:,.0f}".format(a.amount) }}</td>
+      <td><span class="badge {{ a.risk_level|lower }}">{{ a.risk_level }} ({{ a.risk_score }})</span></td>
+      <td>{{ a.reasons }}</td>
+      <td class="status">{{ a.status }}{% if a.tx_status=='HELD' %}<br><span class="muted">(transaction held)</span>{% endif %}</td>
+      <td>
+        {% if a.status == 'PENDING' %}
+          <form class="inline" method="post" action="{{ url_for('alert_action', alert_id=a.id, action='approve') }}">
+            <button class="btn-sm btn-green">{{ 'Approve' if a.tx_status=='HELD' else 'Safe' }}</button></form>
+          <form class="inline" method="post" action="{{ url_for('alert_action', alert_id=a.id, action='reject') }}">
+            <button class="btn-sm btn-red">{{ 'Reject' if a.tx_status=='HELD' else 'Fraud' }}</button></form>
+        {% else %}-{% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="8" class="muted">No alerts.</td></tr>
+    {% endfor %}
+  </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="card auth">
+  <h2>New Account (Customer)</h2>
+  <form method="post">
+    <label>Full name</label><input name="full_name" required>
+    <label>Username</label><input name="username" required>
+    <label>Phone number</label><input name="phone" required>
+    <label>Email</label><input name="email" type="email">
+    <label>Password (at least 6 characters)</label><input name="password" type="password" required>
+    <label>Your device name</label><input name="device" value="Phone-1">
+    <br><br><button type="submit">Register</button>
+  </form>
+  <p class="muted">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
+{% endblock %}

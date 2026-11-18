@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Transaction Report{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Transaction Report</h2>
+  <form method="get" class="filters">
+    <div><label>Risk Level</label>
+      <select name="risk">
+        <option value="">All</option>
+        {% for r in ['LOW','MEDIUM','HIGH'] %}<option {{ 'selected' if risk==r }}>{{ r }}</option>{% endfor %}
+      </select></div>
+    <div><label>Status</label>
+      <select name="status">
+        <option value="">All</option>
+        {% for s in ['COMPLETED','HELD','CANCELLED','FRAUD'] %}<option {{ 'selected' if status==s }}>{{ s }}</option>{% endfor %}
+      </select></div>
+    <button type="submit">Filter</button>
+    <a class="btn btn-green" href="{{ url_for('export_csv', risk=risk or '', status=status or '') }}">⬇ CSV Export</a>
+  </form>
+  {% include "_tx_table.html" %}
+</div>
+{% endblock %}

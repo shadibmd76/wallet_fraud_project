@@ -1,0 +1,16 @@
+<div class="table-wrap">
+<table>
+  <tr><th>ID</th><th>Date</th><th>Type</th><th>Sender</th><th>Receiver</th><th>Amount</th><th>Device</th><th>Status</th><th>Risk</th></tr>
+  {% for t in txs %}
+  <tr>
+    <td>{{ t.id }}</td><td>{{ t.created_at.replace('T',' ') }}</td><td>{{ t.type }}</td>
+    <td>{{ t.sender or '-' }}</td><td>{{ t.receiver or '-' }}</td>
+    <td>{{ "{:,.2f}".format(t.amount) }}</td><td>{{ t.device or '-' }}</td>
+    <td class="status">{{ t.status }}</td>
+    <td><span class="badge {{ t.risk_level|lower }}">{{ t.risk_level }} ({{ t.risk_score }})</span></td>
+  </tr>
+  {% else %}
+  <tr><td colspan="9" class="muted">No transactions.</td></tr>
+  {% endfor %}
+</table>
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Mobile Wallet{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav>
+  <span class="brand">💳 Mobile Wallet &amp; Fraud Detection</span>
+  {% if session.user_id %}
+    {% if session.role == 'admin' %}
+      <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+      <a href="{{ url_for('customers') }}">Customers</a>
+    {% else %}
+      <a href="{{ url_for('dashboard') }}">Wallet</a>
+      <a href="{{ url_for('send') }}">Send Money</a>
+    {% endif %}
+    <a href="{{ url_for('transactions') }}">Transaction Report</a>
+    <a href="{{ url_for('logout') }}">Logout ({{ session.username }})</a>
+  {% endif %}
+</nav>
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, msg in messages %}<div class="flash {{ category }}">{{ msg }}</div>{% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

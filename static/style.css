@@ -1,0 +1,37 @@
+* { box-sizing: border-box; }
+body { margin:0; font-family: "Segoe UI", Tahoma, "Noto Sans Bengali", sans-serif; background:#f3f5f9; color:#222; }
+nav { background:#1f3a5f; color:#fff; padding:12px 24px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+nav .brand { font-weight:700; font-size:18px; margin-right:auto; }
+nav a { color:#dbe7f7; text-decoration:none; }
+nav a:hover { color:#fff; text-decoration:underline; }
+.container { max-width:1000px; margin:24px auto; padding:0 16px; }
+.card { background:#fff; border-radius:10px; padding:20px; margin-bottom:20px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+h1,h2 { margin-top:0; }
+.auth { max-width:420px; margin:50px auto; }
+label { display:block; margin:12px 0 4px; font-weight:600; font-size:14px; }
+input, select { width:100%; padding:10px; border:1px solid #c9d1de; border-radius:6px; font-size:15px; }
+button, .btn { background:#2d6cdf; color:#fff; border:0; padding:10px 18px; border-radius:6px; cursor:pointer; font-size:15px; text-decoration:none; display:inline-block; }
+button:hover, .btn:hover { background:#1f55b8; }
+.btn-green { background:#1e9e5a; } .btn-green:hover { background:#157a44; }
+.btn-red { background:#d64545; } .btn-red:hover { background:#b03030; }
+.btn-sm { padding:5px 10px; font-size:13px; }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+th, td { padding:9px 8px; border-bottom:1px solid #e5e9f0; text-align:left; }
+th { background:#f0f3f8; }
+.table-wrap { overflow-x:auto; }
+.flash { padding:12px 16px; border-radius:6px; margin-bottom:14px; }
+.flash.success { background:#e3f6ea; color:#14663a; }
+.flash.error { background:#fde6e6; color:#9b2222; }
+.flash.warning { background:#fff4d6; color:#8a6100; }
+.balance { font-size:34px; font-weight:700; color:#1e9e5a; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; }
+.stat { background:#fff; border-radius:10px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.stat .num { font-size:26px; font-weight:700; }
+.badge { padding:3px 9px; border-radius:12px; font-size:12px; font-weight:600; color:#fff; }
+.badge.low { background:#1e9e5a; } .badge.medium { background:#e69b00; } .badge.high { background:#d64545; }
+.status { font-size:12px; font-weight:600; }
+.row { display:flex; gap:20px; flex-wrap:wrap; } .row > * { flex:1; min-width:260px; }
+.muted { color:#6b7686; font-size:13px; }
+form.inline { display:inline; }
+.filters { display:flex; gap:10px; align-items:end; flex-wrap:wrap; margin-bottom:14px; }
+.filters div { width:160px; }
